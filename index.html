@@ -2,10 +2,91 @@
 <html lang="en">
 <head>
     <title>Exercise 3</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 </head>
 <body>
-    <center>
-        <h1>Daftar Planet</h1>
-    </center>
+    <h1 class="judul">Daftar Planet</h1>
+    <input type="text" class="form-search" id="searchPlanet" onkeyup="cariPlanet()" placeholder="Cari Nama Planet">
+    
+    <!-- Mencari berdasarkan kolom tabel lalu di search tapi masih belum berfungsi -->
+    <!-- <select name="filterPlanet" id="filterPlanet">
+        <option value="name">name</option>
+        <option value="rotation">rotation</option>
+        <option value="orbital">orbital</option>
+        <option value="diameter">diameter</option>
+    </select> -->
+
+    <table class="table table-hover" id="tablePlanet">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Rotation</th>
+                <th>Orbital</th>
+                <th>Diameter</th>
+            </tr>
+        </thead>
+        <tbody id="dataPlanet"></tbody>
+    </table>
+    <p>Made with &#x2661; by kiadi</p>
+    <script>
+        
+        //menghitung jumlah planet
+        let jumlahPlanet = planet.length;
+        console.log(jumlahPlanet);
+
+        let tableBody = '<tbody>';
+        
+        //perulangan data planet
+        for(i=0; i < jumlahPlanet; i++){
+            tableBody += '<tr>' +
+                   // Menampilkan data data yang ada di json berdasarkan key
+                   '<td>' + planet[i].name + '</td>' + 
+                   '<td>' + planet[i].rotation_period + '</td>' +
+                   '<td>' + planet[i].orbital_period + '</td>' +
+                   '<td>' + planet[i].diameter + '</td>' +
+                   '</tr>';
+            // console.log(planet[i].name);
+        } 
+        tableBody += '</tbody>';
+
+        //Menambahkan baris pada tabel html
+        document.getElementById('dataPlanet').innerHTML = tableBody;
+
+        let opt = document.getElementById('filterPlanet');
+        let slctd = opt.options[opt.selectedIndex];
+        console.log(slctd.value);
+        
+        // Mencari planet berdasarkan nama planet
+        function cariPlanet(){
+            let input = document.getElementById('searchPlanet');
+            let filter = input.value.toUpperCase();
+            let bodyTable = document.getElementById('dataPlanet');
+            let row =  bodyTable.getElementsByTagName('tr');
+
+            //Perulangan untuk baris data planet 
+            for(i=0; i < row.length; i++){
+
+                //Mencari nama planet di kolom pertama (nama planet)
+                let col = row[i].getElementsByTagName('td')[0];
+                
+                if(col){
+                    let textValue = col.textContent || col.innerText;
+
+                    //Jika huruf yang di input sama dengan nama planet
+                    if(textValue.toUpperCase().indexOf(filter) > -1){
+                        row[i].style.display = "";
+                    }
+                    
+                    //Jika tidak ditemukan maka table akan di hide
+                    else{
+                        row[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>

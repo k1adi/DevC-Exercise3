@@ -1,0 +1,31 @@
+*{
+    font-family: Montserrat;
+    padding:0;
+}
+.judul{
+    text-align:center;
+    color: #46494e;
+    font-size:50px;
+    margin-top: 50px;
+}
+.table{
+    max-width:60% !important;
+    margin-left:auto;
+    margin-right:auto;
+}
+p{
+    text-align: center;
+    margin-top: 20px;
+}
+.form-search{
+    width:60%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    padding: 1px 7px;
+    border: solid 1px rgba(0, 0, 0, .2);
+    font-size: 18px;
+    border-radius: 5px;
+}
